@@ -1,0 +1,33 @@
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: spark-master-controller-kmeans
+spec:
+  replicas: 1
+  selector:
+    component: spark-master-kmeans
+  template:
+    metadata:
+      labels:
+        component: spark-master-kmeans
+    spec:
+      containers:
+        - name: spark-master
+          image: myregistry.local:5000/spark:2.4.3
+          volumeMounts:
+            - name: kmeans
+              mountPath: /tmp/kmeans
+          command: ["/tmp/kmeans/start-master.sh"]
+          ports:
+            - containerPort: 7077
+            - containerPort: 8080
+          resources:
+            limits:
+               memory: "2048Mi"
+               cpu: "1000m"
+      nodeSelector:
+          diskspeed: thinkstation-e32
+      volumes:
+        - name: kmeans
+          hostPath:
+            path: /home/zcp/spark_benchmark_kubernetes/kmeans

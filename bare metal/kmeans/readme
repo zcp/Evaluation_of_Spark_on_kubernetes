@@ -1,0 +1,1 @@
+./spark-submit --master spark://pnode2:7077 /home/zcp/spark/kmeans/kmeans.py /home/zcp/spark/kmeans/test_data_840 2 50 /home/zcp/spark/kmeans/kmeans_result

@@ -1,0 +1,1 @@
+./bin/spark-submit --master spark://pnode2:7077 /home/zcp/spark/sql_join/sql_join.py /home/zcp/spark/sql_join/users.txt_2180 /home/zcp/spark/sql_join/urls.txt_180 /home/zcp/spark/sql_join/sql_join_result
